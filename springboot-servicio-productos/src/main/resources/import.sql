@@ -1,0 +1,10 @@
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Sony Vaio', 1190, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Xiaomi My Band 4', 35, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('PlayStation 4', 190, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Samsung Galaxy S20 ', 890, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('LG TV', 390, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Philips Freezer Plus', 790, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Tarjeta Netflix 3 Meses', 19.90, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('The Last Os Uf Part II', 69.90, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Un mundo feliz', 11.90, NOW());
+INSERT INTO productos (nombre, precio, fecha_creacion) VALUES ('Pasta Térmica Artic Mx-4', 7.95, NOW());
