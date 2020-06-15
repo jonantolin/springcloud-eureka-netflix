@@ -15,14 +15,6 @@ import com.formacionbdi.springboot.app.productos.model.service.IProductoService;
 @RestController
 public class ProductoController {
 	
- /*
- * Ojo, se usa la interface, no la clase implementada.
- * Esto es una 'buena práctica' con el fin de que si hubiera que sustituir la implementacion (la clase), 
- * no habria que modificar nada allá donde se usara la anterior. 
- * Spring internamente buscará y usará la clase que implemente la interface.
- */
-	
-	
 	
 	//Con esta variable puedo conocer el puerto en el que esta desplegado 
 	//@Autowired
@@ -32,6 +24,12 @@ public class ProductoController {
 	@Value("${server.port}")
 	private Integer port;
 	
+	/*
+	 * Ojo, se usa la interface, no la clase implementada.
+	 * Esto es una 'buena práctica' con el fin de que si hubiera que sustituir la implementacion (la clase), 
+	 * no habria que modificar nada allá donde se usara la anterior. 
+	 * Spring internamente buscará y usará la clase que implemente la interface.
+	 */
 	@Autowired
 	private IProductoService productoService;
 
@@ -56,6 +54,14 @@ public class ProductoController {
 		
 		//usando @Value
 		producto.setPort(port);
+		
+		//prueba para probar timeout mayor
+		try {
+			Thread.sleep(2000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		return producto;
 	}
 }
