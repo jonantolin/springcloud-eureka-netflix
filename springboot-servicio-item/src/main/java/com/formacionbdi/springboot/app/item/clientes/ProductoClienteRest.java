@@ -11,9 +11,11 @@ import com.formacionbdi.springboot.app.item.model.Producto;
 @FeignClient(name = "servicio-productos")
 public interface ProductoClienteRest {
 
-	@GetMapping("/productos")
+	//@GetMapping("/productos") -> Uso esta ruta a traves de la puerta de enlace Zuul
+	@GetMapping("")
 	public List<Producto> listar();
 	
-	@GetMapping("/productos/{id}")
+	//@GetMapping("/productos/{id}") -> Uso esta ruta a traves de la puerta de enlace Zuul
+	@GetMapping("/{id}")
 	public Producto detalle(@PathVariable Long id);
 }

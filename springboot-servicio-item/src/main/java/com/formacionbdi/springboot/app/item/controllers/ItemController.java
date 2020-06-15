@@ -26,7 +26,8 @@ public class ItemController {
 	@Qualifier("serviceFeign") // usando servicio cliente Feign
 	private IItemService itemService;
 	
-	@GetMapping("/items")
+	//@GetMapping("/items")
+	@GetMapping("")
 	public List<Item> listar(){
 		return itemService.findAll();
 	}
@@ -37,8 +38,10 @@ public class ItemController {
 		return itemService.findById(id, cantidad);
 	}*/
 	
+	//@GetMapping("/items/{id}/cantidad/{cantidad}")
+	
 	@HystrixCommand(fallbackMethod = "metodoAlternativo")
-	@GetMapping("/items/{id}/cantidad/{cantidad}")
+	@GetMapping("/{id}/cantidad/{cantidad}")
 	public ResponseEntity<?> detalle(@PathVariable Long id, @PathVariable Integer cantidad) {
 		
 		return new ResponseEntity<Item>(itemService.findById(id, cantidad), HttpStatus.OK);			

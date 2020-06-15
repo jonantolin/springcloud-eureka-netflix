@@ -33,8 +33,8 @@ public class ProductoController {
 	@Autowired
 	private IProductoService productoService;
 
-
-	@GetMapping("/productos")
+	//@GetMapping("/productos")
+	@GetMapping("")
 	public List<Producto> listar(){
 		return productoService.findAll().stream().map( producto -> {
 			//usando la interface Environment
@@ -46,7 +46,8 @@ public class ProductoController {
 		}).collect(Collectors.toList());
 	}
 	
-	@GetMapping("/productos/{id}")
+	//@GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public Producto detalle(@PathVariable Long id) {
 		Producto producto = productoService.findById(id);
 		//usando la interface Environment
@@ -56,11 +57,13 @@ public class ProductoController {
 		producto.setPort(port);
 		
 		//prueba para probar timeout mayor
+		
 		try {
 			Thread.sleep(2000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		
 		return producto;
 	}
