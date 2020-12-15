@@ -39,7 +39,7 @@ public class ItemController {
 	private Environment env;
 
 	@Autowired
-	@Qualifier("serviceRestTemplate") //("serviceRestTemplate para usar cliente RestTemplate") / (serviceFeign para usar cliente Feign)
+	@Qualifier("serviceFegn") //("serviceRestTemplate para usar cliente RestTemplate") / (serviceFeign para usar cliente Feign)
 	private IItemService itemService;
 	
 	@Value("${configuracion.texto}")
