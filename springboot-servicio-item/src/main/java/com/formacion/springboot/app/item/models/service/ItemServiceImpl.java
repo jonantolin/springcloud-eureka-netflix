@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,10 +21,11 @@ public class ItemServiceImpl implements IItemService {
 
 	@Autowired
 	private RestTemplate clienteRest;
-	
+
 	@Override
 	public List<Item> findAll() {
-		List<Producto> productos = Arrays.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
+		List<Producto> productos = Arrays
+				.asList(clienteRest.getForObject("http://servicio-productos/listar", Producto[].class));
 		return productos.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
 	}
 
@@ -31,6 +35,37 @@ public class ItemServiceImpl implements IItemService {
 		pathVariables.put("id", id.toString());
 		Producto producto = clienteRest.getForObject("http://servicio-productos/{id}", Producto.class, pathVariables);
 		return new Item(producto, cantidad);
+	}
+
+	@Override
+	public Producto save(Producto producto) {
+
+		HttpEntity<Producto> requestBody = new HttpEntity<Producto>(producto);
+		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/crear", HttpMethod.POST,
+				requestBody, Producto.class);
+		Producto productoResponse = response.getBody();
+		return productoResponse;
+	}
+
+	@Override
+	public Producto update(Producto producto, Long id) {
+		Map<String, String> pathVariables = new HashMap<String, String>();
+		pathVariables.put("id", id.toString());
+		
+		HttpEntity<Producto> requestBody = new HttpEntity<Producto>(producto);
+		ResponseEntity<Producto> response = clienteRest.exchange("http://servicio-productos/editar/{id}", 
+				HttpMethod.POST, requestBody, Producto.class, pathVariables);
+		
+		Producto productoResponse = response.getBody();
+		return productoResponse;
+	}
+
+	@Override
+	public void delete(Long id) {
+		Map<String, String> pathVariables = new HashMap<String, String>();
+		pathVariables.put("id", id.toString());
+		clienteRest.delete("http://servicio-productos/editar/{id}", pathVariables);
+
 	}
 
 }
