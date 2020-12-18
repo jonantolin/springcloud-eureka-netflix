@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formacion.springboot.app.item.models.Item;
-import com.formacion.springboot.app.item.models.Producto;
+import com.formacion.springboot.app.commons.models.entity.Producto;
 //import com.formacion.springboot.app.item.models.Producto;
 import com.formacion.springboot.app.item.models.service.IItemService;
 //import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -39,7 +39,7 @@ public class ItemController {
 	private Environment env;
 
 	@Autowired
-	@Qualifier("serviceFegn") //("serviceRestTemplate para usar cliente RestTemplate") / (serviceFeign para usar cliente Feign)
+	@Qualifier("serviceFeign") //("serviceRestTemplate para usar cliente RestTemplate") / (serviceFeign para usar cliente Feign)
 	private IItemService itemService;
 	
 	@Value("${configuracion.texto}")
